@@ -1,5 +1,10 @@
 h1,h2{text-align: center;}
-
+h1{
+    font-size: 60px;
+}
+h2{
+    font-size: 40px;
+}
 p{
     margin: 0 auto;
     width:750px;
