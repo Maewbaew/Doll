@@ -74,14 +74,14 @@ function setup() {
     kitchen = loadImage('Kitchen.png');
     outside = loadImage('Outside.png');
     for(var i=0; i<4; i++){
-        /*headimg[i] = loadImage('Head'+i+'.png');
+        headimg[i] = loadImage('Head'+i+'.png');
         bodyimg[i] = loadImage('Body'+i+'.png');
         shoesimg[i] = loadImage('Shoes'+i+'.png'); 
         faceimg[i] = loadImage('Face'+i+'.png');
-        actimg[i] = loadImage('Act'+i+'.png');*/
+        actimg[i] = loadImage('Act'+i+'.png');
     }
     for(var i=4; i<8; i++){
-        //actimg[i] = loadImage('Act'+i+'.png');
+        actimg[i] = loadImage('Act'+i+'.png');
     }
     /*headimg[0] = loadImage('Head0.png');
     bodyimg[0] = loadImage('Body0.png');
