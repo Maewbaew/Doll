@@ -189,8 +189,9 @@ function draw() {
         triangle(1050, 600, 970, 560, 970, 640);
     }
     stroke('red');
-    fill(255,255,127,200);
-    triangle(mouseX,mouseY,mouseX,mouseY+10,mouseX+3,mouseY+8); 
+    strokeWeight(3);
+    fill('pink');
+    triangle(mouseX,mouseY,mouseX,mouseY+10,mouseX+5,mouseY+8); 
     //text(frame+' ('+mouseX+', '+mouseY+')',mouseX+10,mouseY);
 }
 
