@@ -410,12 +410,12 @@ function mousePressed() {
 }
 
 function maria(){
-    if(head!=3){
-        image(actimg[fact], positionX, positionY);
-    }
     image(headimg[head], positionX, positionY);
     image(faceimg[face], positionX, positionY);
     image(shoesimg[shoes], positionX, positionY);
+    if(head!=3){
+        image(actimg[fact], positionX, positionY);
+    }
     image(bodyimg[body], positionX, positionY);
     if(head==3 && act!=0){
             image(actimg[fact], positionX, positionY);
