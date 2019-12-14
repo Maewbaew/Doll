@@ -3,12 +3,11 @@ h1,h2{text-align: center;}
 p{
     margin: 0 auto;
     width:750px;
+    font-size: 24px;
 }
 
 body{
     background: #ffd97b;
-    font-family: 'Calistoga', cursive;
-    font-size: 2em;
 }
 img, video, audio, canvas{
     display: block; 
