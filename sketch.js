@@ -190,7 +190,7 @@ function draw() {
     }
     stroke('red');
     fill(255,255,127,200);
-    rect(mouseX,mouseY,mouseX,mouseY+10,mouseX+3,mouseY+8); 
+    triangle(mouseX,mouseY,mouseX,mouseY+10,mouseX+3,mouseY+8); 
     //text(frame+' ('+mouseX+', '+mouseY+')',mouseX+10,mouseY);
 }
 
