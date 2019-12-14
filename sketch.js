@@ -73,7 +73,7 @@ function setup() {
     dressingroom = loadImage('Dressingroom.png');
     kitchen = loadImage('Kitchen.png');
     outside = loadImage('Outside.png');
-    for(var i=0; i<4; i++){
+    /*for(var i=0; i<4; i++){
         headimg[i] = loadImage('Head'+i+'.png');
         bodyimg[i] = loadImage('Body'+i+'.png');
         shoesimg[i] = loadImage('Shoes'+i+'.png'); 
@@ -82,12 +82,12 @@ function setup() {
     }
     for(var i=4; i<8; i++){
         actimg[i] = loadImage('Act'+i+'.png');
-    }
-    /*headimg[0] = loadImage('Head0.png');
+    }*/
+    headimg[0] = loadImage('Head0.png');
     bodyimg[0] = loadImage('Body0.png');
     shoesimg[0] = loadImage('Shoes0.png'); 
     faceimg[0] = loadImage('Face0.png');
-    actimg[0] = loadImage('Act0.png');*/
+    actimg[0] = loadImage('Act0.png');
     frontmaria[0] = loadImage('FBathroom.png');
     frontmaria[1] = loadImage('FKitchen.png');
     frontmaria[2] = loadImage('FOutside.png');
