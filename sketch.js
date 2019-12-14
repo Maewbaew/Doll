@@ -2,12 +2,10 @@ var frame;
 var head;
 var body;
 var shoes;
-var act;
-var face;
 var thead;
 var tbody;
 var tshoes;
-var fact;
+var act;
 var count;
 
 var bedroom;
@@ -16,17 +14,14 @@ var kitchen;
 var dressingroom;
 var outside;
 var clothset;
+var frontmaria;
 var positionX;
 var positionY;
 
-var headimg=[];
-var bodyimg=[];
-var shoesimg=[];
-var faceimg=[];
-var actimg=[];
-var frontmaria=[];
-
-
+var headimg;
+var bodyimg;
+var shoesimg;
+var actimg;
 
 function setup() {
     var canvas = createCanvas(1080, 720);
@@ -39,7 +34,6 @@ function setup() {
     tbody = body;
     tshoes = shoes;
     act = 0;
-    fact = 0;
     background(0,0,0);
     bedroom = 'gray';
     bathroom = 'red';
@@ -51,44 +45,30 @@ function setup() {
     
     bedroom = loadImage('Bedroom.png');
     bathroom = loadImage('Bathroom.jpg');
-    dressingroom = loadImage('Dressingroom.png');
+    dressingroom = loadImage('DressingRoom.png');
     kitchen = loadImage('Kitchen.png');
     outside = loadImage('Outside.png');
-    /*for(var i=0; i<4; i++){
-        headimg[i] = loadImage('Head'+i+'.png');
-        bodyimg[i] = loadImage('Body'+i+'.png');
-        shoesimg[i] = loadImage('Shoes'+i+'.png'); 
-        faceimg[i] = loadImage('Face'+i+'.png');
-        actimg[i] = loadImage('Act'+i+'.png');
-    }
-    for(var i=4; i<8; i++){
-        actimg[i] = loadImage('Act'+i+'.png');
-    }*/
-    headimg[0] = loadImage('Head0.png');
-    bodyimg[0] = loadImage('Body0.png');
-    shoesimg[0] = loadImage('Shoes0.png'); 
-    faceimg[0] = loadImage('Face0.png');
-    actimg[0] = loadImage('Act0.png');
-    frontmaria[0] = loadImage('FBathroom.png');
-    frontmaria[1] = loadImage('FKitchen.png');
-    frontmaria[2] = loadImage('FOutside.png');
+    
+    headimg = loadImage('Head0.png');
+    bodyimg = loadImage('Body0.png');
+    shoesimg = loadImage('Shoes0.png');
+    actimg = loadImage('Act0.png');
+    frontmaria = loadImage('FKitchen.png');
 }
 
 function draw() {
     if (frame == 0){ //bedroom
         background(bedroom);
-        if(fact == 0){
+        if(act == 0){
             positionX=800;
             positionY=300;
-            //maria();
+            maria();
         }
         else{
-            //maria();
+            maria();
             count++;
             if(count==65){
                 act=0;
-                face=0;
-                fact=0;
                 count=0;
             }
         }
@@ -97,70 +77,64 @@ function draw() {
         background(dressingroom);
         positionX=460;
         positionY=300;
-        //maria();
+        maria();
     }
     else if(frame == 2){ //kitchen
         background(kitchen);
-        if(fact==0){
+        if(act==0){
             positionX=540;
             positionY=260;
-            //maria();
+            maria();
         }
         else{
-            //maria();
+            maria();
             count++;
             if(count==65){
                 act=0;
-                face=0;
-                fact=0;
                 count=0;
             }
         }
-        image(frontmaria[1],0,10);
+        image(frontmaria,0,10);
     }
     else if(frame==3){ //bathroom
         background(bathroom);
-        if(fact==0){
+        if(act==0){
             positionX=540;
             positionY=330;
-            //maria();
+            maria();
         }
         else{
-            //maria();
+            maria();
             count++;
             if(count==65){
                 act=0;
-                face=0;
-                fact=0;
                 count=0;
             }
         }
-        image(frontmaria[0],0,10);
+        image(frontmaria,0,10);
     }
     else if(frame==4){ //outside
         background(outside);
-        if(fact==0){
+        if(act==0){
             positionX=540;
             positionY=355;
-            //maria();
+            maria();
         }
         else{
-            //maria();
+            maria();
             count++;
             if(count==65){
                 act=0;
-                face=0;
-                fact=0;
                 count=0;
             }
         }
-        image(frontmaria[2],0,10);
+        image(frontmaria,0,10);
     }
     else{ //click clothset
         background(clothset);
         positionX=150;
         positionY=250;
-        //maria();
+        maria();
         stroke('black');
         strokeWeight(5);
         fill('#00E6FF');
@@ -182,9 +156,13 @@ function draw() {
         triangle(970, 390, 970, 310, 1050, 350);
         triangle(970, 570, 970, 490, 1050, 530);
         
-        image(headimg[head],700,100);
-        image(bodyimg[body],700,170);
-        image(shoesimg[shoes],700,280);   
+        image(headimg,700,100);
+        image(bodyimg,700,170);
+        image(shoesimg,700,280);
+        
+        headimg = loadImage('Head'+head+'.png');
+        bodyimg = loadImage('Body'+body+'.png');
+        shoesimg = loadImage('Shoes'+shoes+'.png');    
     
     }
     if(frame==0||frame==1||frame==2){
@@ -208,87 +186,82 @@ function draw() {
 function mousePressed() {
     if(frame==0){
         if(mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            frontmaria = loadImage('FKitchen.png');
+            act=0;
             count=0;
             frame=2;
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            act=0;
             count=0;
             frame=1;
         }
         else if(mouseX>=440&&mouseX<=640&&mouseY>=260&&mouseY<=665){ //click bed 
-            fact=1;
-            face=3;
+            act=1;
             count=0;
             positionX=470;
             positionY=270;
-            //maria();
+            maria();
         }
     }
     else if(frame==1){ //at dressingroom 
         if(mouseX>=137&&mouseX<=402&&mouseY>=50&&mouseY<=415){ //click clothset
-            fact=0;
+            act=0;
             count=0;
             frame=5; 
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //click bathroom
+            frontmaria = loadImage('FBathroom.png');
+            headimg = loadImage('Head3.png');
+            bodyimg = loadImage('Body3.png');
+            shoesimg = loadImage('Shoes3.png');
             head = 3;
             body = 3;
             shoes = 3;
-            fact=0;
+            act=0;
             count=0;
             frame=3;
         }
         else if(mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            act=0;
             count=0;
             frame=0;
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            frontmaria = loadImage('FKitchen.png');
+            act=0;
             count=0;
             frame=2;
         } 
     }
     else if(frame==2){ //at kitchen
         if(mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            act=0;
             count=0;    
             frame=1;
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
-            fact=0;
+            act=0;
             count=0;    
             frame=0;
         }
         else if(mouseX>=313&&mouseX<=492&&mouseY>=179&&mouseY<=458){ //cooking
-            face=2;
-            act=2;
-            fact=1;
+            act=1;
             count=0;
             positionX=323;
             positionY=185;
-            //maria();
+            maria();
         }
         else if(mouseX>=258&mouseX<=759&&mouseY>=616&&mouseY<=720){ //eating
-            fact=1;
             act=1;
             count=0;
             positionX=540;
             positionY=420;
-            //maria();
-        }
-        else if(mouseX>=61&mouseX<=274&&mouseY>=67&&mouseY<=458){ //eating cake
-            fact=1;
-            act=4;
-            count=0;
-            positionX=540;
-            positionY=420;
-            //maria();
+            maria();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //outside
-            fact=0;
+            frontmaria = loadImage('FOutside.png');
+            act=0;
             count=0;
             frame=4;
         }
@@ -296,61 +269,56 @@ function mousePressed() {
     
     else if(frame==3){ //at bathroom
         if(mouseX>=98&mouseX<=204&&mouseY>=249&&mouseY<=455){ //using toilet
-            face=3;
-            act=6;
-            fact=1;
+            act=1;
             count=0;
             positionX=80;
             positionY=200;
-            //maria();
+            maria();
         }
         else if(mouseX>=282&mouseX<=750&&mouseY>=616&&mouseY<=720){ //taking shower
-            face=2;
-            act=5;
-            fact=1;
+            act=1;
             count=0;
             positionX=520;
             positionY=460;
-            //maria();
+            maria();
         }
         else if(mouseX>=282&mouseX<=516&&mouseY>=103&&mouseY<=455){ //blush teeth
-            face=2;
-            act=7;
-            fact=1;
+            act=1;
             count=0;
             positionX=390;
             positionY=200;
-            //maria();
+            maria();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //go dressingroom
             head=thead;
             body=tbody;
             shoes=tshoes;
-            fact=0;
+            headimg = loadImage('Head'+head+'.png');
+            bodyimg = loadImage('Body'+body+'.png');
+            shoesimg = loadImage('Shoes'+shoes+'.png');
+            act=0;
             count=0;
             frame=1;
         }
     }
     else if(frame==4){ //outside
         if(mouseX>=676&mouseX<=1080&&mouseY>=556&&mouseY<=720){ //water
-            face=2;
-            act=3;
-            fact=1;
+            act=1;
             count=0;
             positionX=800;
             positionY=420;
-            //maria();
+            maria();
         }
         else if(mouseX>=156&mouseX<=274&&mouseY>=290&&mouseY<=468){ //play swing
-            face=2;
-            fact=1;
+            act=1;
             count=0;
             positionX=156;
             positionY=290;
-            //maria();
+            maria();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //go kitchen
-            fact=0;
+            frontmaria = loadImage('FKitchen.png');
+            act=0;
             count=0;
             frame=2;
         }
@@ -396,19 +364,18 @@ function mousePressed() {
             thead=head;
             tbody=body;
             tshoes=shoes;
-            fact=0;
+            act=0;
             count=0;
             frame=1;
         }
     } 
 }
 
-/*function maria(){
+function maria(){
     if(head!=3){
         image(actimg, positionX, positionY);
     }
-    image(headimg[head], positionX, positionY);
-    image(shoesimg[shoes], positionX, positionY);
-    image(bodyimg[body], positionX, positionY);
-    image(faceimg[face], positionX, positionY);
-}*/
+    image(headimg, positionX, positionY);
+    image(shoesimg, positionX, positionY);
+    image(bodyimg, positionX, positionY);
+}
