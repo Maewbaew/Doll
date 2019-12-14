@@ -8,6 +8,7 @@ p{
 
 body{
     background: #ffd97b;
+    font-family: 'Indie Flower', cursive;
 }
 img, video, audio, canvas{
     display: block; 
