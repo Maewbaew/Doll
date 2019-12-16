@@ -215,6 +215,7 @@ function mousePressed() {
             act=1;
             count=0;
             face=3;
+            fact=0;
             positionX=470;
             positionY=270;
         }
@@ -351,6 +352,7 @@ function mousePressed() {
             positionX=156;
             positionY=290;
             face=2;
+            fact=0;
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //go kitchen
             act=0;
