@@ -9,6 +9,7 @@ var tshoes;
 var act;
 var fact;
 var count;
+var sound;
 
 var bedroom;
 var bathroom;
@@ -20,11 +21,18 @@ var frontmaria=[];
 var positionX;
 var positionY;
 
+let bmg;
+let csound;
+
 var faceimg=[];
 var headimg=[];
 var bodyimg=[];
 var shoesimg=[];
 var actimg=[];
+
+function preload() {
+    bmg = loadSound('BMG.mp3');
+}
 
 function setup() {
     var canvas = createCanvas(1080, 720);
@@ -42,6 +50,9 @@ function setup() {
     background(0,0,0);
     clothset = 'pink';
     count = 0;
+    sound = 1;
+    
+    bmg.loop();
     
     bedroom = loadImage('Bedroom.png');
     bathroom = loadImage('Bathroom.jpg');
@@ -61,6 +72,10 @@ function setup() {
     frontmaria[0] = loadImage('FBathroom.png');
     frontmaria[1] = loadImage('FKitchen.png');
     frontmaria[2] = loadImage('FOutside.png');
+    
+    textSize(32);
+    csound = loadSound('sfx.mp3');
+    csound.playMode('restart');
 }
 
 function draw() {
@@ -149,7 +164,7 @@ function draw() {
         positionX=150;
         positionY=250;
         maria();
-        stroke('black');
+       /*stroke('black');
         strokeWeight(5);
         fill('#00E6FF');
         rect(20, 20, 100, 100);
@@ -158,7 +173,7 @@ function draw() {
         rect(500, 480, 100, 100);
         rect(960, 120, 100, 100);
         rect(960, 300, 100, 100);
-        rect(960, 480, 100, 100);
+        rect(960, 480, 100, 100);*/
         stroke('orange');
         strokeWeight(5);
         fill('yellow');
@@ -177,11 +192,11 @@ function draw() {
     
     }
     if(frame==0||frame==1||frame==2){
-        stroke('black');
+        /*stroke('black');
         strokeWeight(5);
         fill('#00E6FF');
         rect(20, 550, 100, 100);
-        rect(960, 550, 100, 100);
+        rect(960, 550, 100, 100);*/
         stroke('orange');
         strokeWeight(5);
         fill('yellow');
@@ -191,9 +206,25 @@ function draw() {
     stroke('red');
     strokeWeight(3);
     fill('pink');
-    triangle(mouseX,mouseY,mouseX,mouseY+20,mouseX+10,mouseY+16); 
-    //text(frame+' ('+mouseX+', '+mouseY+')',mouseX+10,mouseY);
+    
+    //cursor
+    triangle(mouseX,mouseY,mouseX,mouseY+20,mouseX+10,mouseY+16);
+    if((frame==0||frame==1||frame==2)&&((mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650)||(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650)))
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==0&&mouseX>=440&&mouseX<=640&&mouseY>=260&&mouseY<=665)
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==1&&((mouseX>=137&&mouseX<=402&&mouseY>=50&&mouseY<=415)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==2&&((mouseX>=313&&mouseX<=492&&mouseY>=179&&mouseY<=458)||(mouseX>=63&&mouseX<=274&&mouseY>=64&&mouseY<=458)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)||(mouseX>=258&mouseX<=759&&mouseY>=616&&mouseY<=720)))
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==3&&((mouseX>=98&mouseX<=204&&mouseY>=249&&mouseY<=455)||(mouseX>=282&mouseX<=750&&mouseY>=616&&mouseY<=720)||(mouseX>=282&mouseX<=516&&mouseY>=103&&mouseY<=455)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==4&&((mouseX>=676&mouseX<=1080&&mouseY>=556&&mouseY<=720)||(mouseX>=156&mouseX<=274&&mouseY>=290&&mouseY<=468)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
+        {text('Click',mouseX+5,mouseY);}
+    else if(frame==5&&((mouseX>=500&&mouseX<=600&&mouseY>=120&&mouseY<=220)||(mouseX>=960&&mouseX<=1060&&mouseY>=120&&mouseY<=220)||(mouseX>=500&&mouseX<=600&&mouseY>=300&&mouseY<=400)||(mouseX>=960&&mouseX<=1060&&mouseY>=300&&mouseY<=400)||(mouseX>=500&&mouseX<=600&&mouseY>=480&&mouseY<=580)||(mouseX>=960&&mouseX<=1060&&mouseY>=480&&mouseY<=580)||(mouseX>=20&&mouseX<=120&&mouseY>=20&&mouseY<=120)))
+        {text('Click',mouseX+5,mouseY);}
 }
+
 
 function mousePressed() {
     if(frame==0){
@@ -203,6 +234,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=2;
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
             act=0;
@@ -210,6 +242,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=1;
+            csound.play();
         }
         else if(mouseX>=440&&mouseX<=640&&mouseY>=260&&mouseY<=665){ //click bed 
             act=1;
@@ -244,6 +277,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=0;
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
             act=0;
@@ -251,6 +285,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=2;
+            csound.play();
         } 
     }
     else if(frame==2){ //at kitchen
@@ -260,6 +295,7 @@ function mousePressed() {
             face=0;
             fact=0;    
             frame=1;
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650){
             act=0;
@@ -267,6 +303,7 @@ function mousePressed() {
             face=0;
             fact=0;    
             frame=0;
+            csound.play();
         }
         else if(mouseX>=313&&mouseX<=492&&mouseY>=179&&mouseY<=458){ //cooking
             act=1;
@@ -298,6 +335,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=4;
+            csound.play();
         }
     }
     
@@ -335,6 +373,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=1;
+            csound.play();
         }
     }
     else if(frame==4){ //outside
@@ -360,6 +399,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=2;
+            csound.play();
         }
     }
     else if(frame==5){ //clothset
@@ -368,36 +408,42 @@ function mousePressed() {
             if(head<0){
                 head=2;
             }
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=120&&mouseY<=220){ //hat->
             head++;
             if(head>2){
                 head=0
             }
+            csound.play();
         }
         else if(mouseX>=500&&mouseX<=600&&mouseY>=300&&mouseY<=400){ //<-body
             body--;
             if(body<0){
                 body=2;
             }
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=300&&mouseY<=400){ //body->
             body++;
             if(body>2){
                 body=0
             }
+            csound.play();
         }
         else if(mouseX>=500&&mouseX<=600&&mouseY>=480&&mouseY<=580){ //<-shoes
             shoes--;
             if(shoes<0){
                 shoes=2;
             }
+            csound.play();
         }
         else if(mouseX>=960&&mouseX<=1060&&mouseY>=480&&mouseY<=580){ //shoes->
             shoes++;
             if(shoes>2){
                 shoes=0
             }
+            csound.play();
         }
         else if(mouseX>=20&&mouseX<=120&&mouseY>=20&&mouseY<=120){ //select
             thead=head;
@@ -408,6 +454,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=1;
+            csound.play();
         }
     } 
 }
