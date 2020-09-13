@@ -9,7 +9,8 @@ var tshoes;
 var act;
 var fact;
 var count;
-var sound;
+var soundon;
+var soundoff;
 
 var bedroom;
 var bathroom;
@@ -30,8 +31,11 @@ var bodyimg=[];
 var shoesimg=[];
 var actimg=[];
 
+
 function preload() {
     bmg = loadSound('BMG.mp3');
+    csound = loadSound('sfx.mp3');
+    csound.playMode('restart');
 }
 
 function setup() {
@@ -50,9 +54,6 @@ function setup() {
     background(0,0,0);
     clothset = 'pink';
     count = 0;
-    sound = 1;
-    
-    bmg.loop();
     
     bedroom = loadImage('Bedroom.png');
     bathroom = loadImage('Bathroom.jpg');
@@ -72,10 +73,12 @@ function setup() {
     frontmaria[0] = loadImage('FBathroom.png');
     frontmaria[1] = loadImage('FKitchen.png');
     frontmaria[2] = loadImage('FOutside.png');
+    soundon = loadImage('SoundOn.png');
+    soundoff = loadImage('SoundOff.png');
     
     textSize(32);
-    csound = loadSound('sfx.mp3');
-    csound.playMode('restart');
+    bmg.loop();
+    
 }
 
 function draw() {
@@ -203,30 +206,44 @@ function draw() {
         triangle(30, 600, 110, 560, 110, 640);
         triangle(1050, 600, 970, 560, 970, 640);
     }
+    if(bmg.isPlaying()){
+       image(soundon,0,0);
+       }
+    else{
+       image(soundoff,0,0);
+       }
+    
+    //cursor
     stroke('red');
     strokeWeight(3);
     fill('pink');
-    
-    //cursor
     triangle(mouseX,mouseY,mouseX,mouseY+20,mouseX+10,mouseY+16);
-    if((frame==0||frame==1||frame==2)&&((mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650)||(mouseX>=960&&mouseX<=1060&&mouseY>=550&&mouseY<=650)))
-        {text('Click',mouseX+5,mouseY);}
-    else if(frame==0&&mouseX>=440&&mouseX<=640&&mouseY>=260&&mouseY<=665)
-        {text('Click',mouseX+5,mouseY);}
+    
+    //text('X='+mouseX+'/Y='+mouseY,mouseX-400,mouseY+20);
+    
+    if(frame==0&&mouseX>=440&&mouseX<=640&&mouseY>=260&&mouseY<=665)
+        {text('Click',mouseX+10,mouseY+40);}
     else if(frame==1&&((mouseX>=137&&mouseX<=402&&mouseY>=50&&mouseY<=415)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
-        {text('Click',mouseX+5,mouseY);}
-    else if(frame==2&&((mouseX>=313&&mouseX<=492&&mouseY>=179&&mouseY<=458)||(mouseX>=63&&mouseX<=274&&mouseY>=64&&mouseY<=458)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)||(mouseX>=258&mouseX<=759&&mouseY>=616&&mouseY<=720)))
-        {text('Click',mouseX+5,mouseY);}
+        {text('Click',mouseX+10,mouseY+40);}
+    else if(frame==2&&((mouseX>=313&&mouseX<=492&&mouseY>=179&&mouseY<=458)||(mouseX>=63&&mouseX<=274&&mouseY>=64&&mouseY<=458)||(mouseX>=700&mouseX<=890&&mouseY>=50&&mouseY<=415)||(mouseX>=300&mouseX<=759&&mouseY>=616&&mouseY<=720)))
+        {text('Click',mouseX+10,mouseY+40);}
     else if(frame==3&&((mouseX>=98&mouseX<=204&&mouseY>=249&&mouseY<=455)||(mouseX>=282&mouseX<=750&&mouseY>=616&&mouseY<=720)||(mouseX>=282&mouseX<=516&&mouseY>=103&&mouseY<=455)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
-        {text('Click',mouseX+5,mouseY);}
+        {text('Click',mouseX+10,mouseY+40);}
     else if(frame==4&&((mouseX>=676&mouseX<=1080&&mouseY>=556&&mouseY<=720)||(mouseX>=156&mouseX<=274&&mouseY>=290&&mouseY<=468)||(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415)))
-        {text('Click',mouseX+5,mouseY);}
-    else if(frame==5&&((mouseX>=500&&mouseX<=600&&mouseY>=120&&mouseY<=220)||(mouseX>=960&&mouseX<=1060&&mouseY>=120&&mouseY<=220)||(mouseX>=500&&mouseX<=600&&mouseY>=300&&mouseY<=400)||(mouseX>=960&&mouseX<=1060&&mouseY>=300&&mouseY<=400)||(mouseX>=500&&mouseX<=600&&mouseY>=480&&mouseY<=580)||(mouseX>=960&&mouseX<=1060&&mouseY>=480&&mouseY<=580)||(mouseX>=20&&mouseX<=120&&mouseY>=20&&mouseY<=120)))
-        {text('Click',mouseX+5,mouseY);}
+        {text('Click',mouseX+10,mouseY+40);}    
 }
 
 
 function mousePressed() {
+    if(mouseX>=1013&&mouseX<=1070&&mouseY>=13&&mouseY<=70){
+        if (bmg.isPlaying()) {
+            bmg.pause();
+        } 
+        else {
+            bmg.play();
+        }
+        csound.play();
+    }
     if(frame==0){
         if(mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650){
             act=0;
@@ -251,6 +268,7 @@ function mousePressed() {
             fact=0;
             positionX=470;
             positionY=270;
+            csound.play();
         }
     }
     else if(frame==1){ //at dressingroom 
@@ -259,7 +277,8 @@ function mousePressed() {
             count=0;
             face=0;
             fact=0;
-            frame=5; 
+            frame=5;
+            csound.play();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //click bathroom
             head = 3;
@@ -270,6 +289,7 @@ function mousePressed() {
             face=0;
             fact=0;
             frame=3;
+            csound.play();
         }
         else if(mouseX>=20&&mouseX<=120&&mouseY>=550&&mouseY<=650){
             act=0;
@@ -312,6 +332,7 @@ function mousePressed() {
             positionY=185;
             face=2;
             fact=2;
+            csound.play();
         }
         else if(mouseX>=63&&mouseX<=274&&mouseY>=64&&mouseY<=458){ //eat cake
             act=1;
@@ -320,16 +341,18 @@ function mousePressed() {
             positionY=185;
             face=1;
             fact=4;
+            csound.play();
         }
-        else if(mouseX>=258&mouseX<=759&&mouseY>=616&&mouseY<=720){ //eating
+        else if(mouseX>=300&mouseX<=759&&mouseY>=616&&mouseY<=720){ //eating
             act=1;
             count=0;
             positionX=540;
             positionY=420;
             face=1;
             fact=1;
+            csound.play();
         }
-        else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //outside
+        else if(mouseX>=700&mouseX<=890&&mouseY>=50&&mouseY<=415){ //outside
             act=0;
             count=0;
             face=0;
@@ -347,6 +370,7 @@ function mousePressed() {
             positionY=200;
             face=3;
             fact=6;
+            csound.play();
         }
         else if(mouseX>=282&mouseX<=750&&mouseY>=616&&mouseY<=720){ //taking shower
             act=1;
@@ -355,6 +379,7 @@ function mousePressed() {
             positionY=460;
             face=2;
             fact=5;
+            csound.play();
         }
         else if(mouseX>=282&mouseX<=516&&mouseY>=103&&mouseY<=455){ //blush teeth
             act=1;
@@ -363,6 +388,7 @@ function mousePressed() {
             positionY=200;
             face=2;
             fact=7;
+            csound.play();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //go dressingroom
             head=thead;
@@ -384,6 +410,7 @@ function mousePressed() {
             positionY=420;
             face=2;
             fact=3;
+            csound.play();
         }
         else if(mouseX>=156&mouseX<=274&&mouseY>=290&&mouseY<=468){ //play swing
             act=1;
@@ -392,6 +419,7 @@ function mousePressed() {
             positionY=290;
             face=2;
             fact=0;
+            csound.play();
         }
         else if(mouseX>=673&mouseX<=863&&mouseY>=50&&mouseY<=415){ //go kitchen
             act=0;
