@@ -1,4 +1,6 @@
-h1,h2{text-align: center;}
+h1,h2{
+    text-align: center;
+}
 h1{
     font-size: 60px;
 }
@@ -25,4 +27,8 @@ img, video, audio, canvas{
 }
 #DollCanvas{
     cursor: none;
+}
+::selection {
+    background-color: transparent;
+    color: #000;
 }

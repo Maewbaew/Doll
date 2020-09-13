@@ -33,6 +33,7 @@ var actimg=[];
 
 
 function preload() {
+    soundFormats('ogg', 'mp3');
     bmg = loadSound('BMG.mp3');
     csound = loadSound('sfx.mp3');
     csound.playMode('restart');
